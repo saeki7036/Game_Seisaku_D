@@ -3,63 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Playercontroller : MonoBehaviour
-{
-    [SerializeField] private float _speed = 1f;
-    private Vector3 Player_pos; //プレイヤーのポジション
-    private float x; //x方向のImputの値
-    private float z; //z方向のInputの値
-    private Rigidbody rigd;
+{  
+    public float turnSpeed = 20f;
 
+    public float moveSpeed = 5f;
+    Rigidbody m_Rigidbody;
+    Vector3 m_Movement;
+    Quaternion m_Rotation = Quaternion.identity;
 
     void Start()
     {
-        Player_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
-        rigd = GetComponent<Rigidbody>(); //プレイヤーのRigidbodyを取得
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
-    private void Update()
+
+    void Update()
     {
+      
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-        x = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
-        z = Input.GetAxis("Vertical"); //z方向のInputの値を取得
+            m_Movement.Set(horizontal, 0f, vertical);
+            m_Movement.Normalize();
 
-        rigd.velocity = new Vector3(x * _speed, 0, z * _speed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+            Vector3 desiredForward = Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
+            m_Rotation = Quaternion.LookRotation(desiredForward);
 
-        Vector3 diff = transform.position - Player_pos; //プレイヤーがどの方向に進んでいるかがわかるように、初期位置と現在地の座標差分を取得
+         
+    }
 
-        if (diff.magnitude > 0.01f) //ベクトルの長さが0.01fより大きい場合にプレイヤーの向きを変える処理を入れる(0では入れないので）
-        {
-            transform.rotation = Quaternion.LookRotation(diff);  //ベクトルの情報をQuaternion.LookRotationに引き渡し回転量を取得しプレイヤーを回転させる
-        }
+     void FixedUpdate()
+     {
+         Move();
+     }
 
-        Player_pos = transform.position; //プレイヤーの位置を更新
-        /*  if (Input.anyKey)
-          {
-              var velocity = Vector3.zero;
-              if (Input.GetKey(KeyCode.W))
-              {
-                  velocity.z = _speed;
-              }
-              if (Input.GetKey(KeyCode.A))
-              {
-                  velocity.x = -_speed;
-              }
-              if (Input.GetKey(KeyCode.S))
-              {
-                  velocity.z = -_speed;
-              }
-              if (Input.GetKey(KeyCode.D))
-              {
-                  velocity.x = _speed;
-              }
-              if (velocity.x != 0 || velocity.z != 0)
-              {
-                  transform.position += transform.rotation * velocity;
-              }
-          }
+    void Move()
+    {
+        Vector3 movement = m_Movement * moveSpeed * Time.fixedDeltaTime;
+        m_Rigidbody.MovePosition(transform.position + movement);
+    }
 
-          if (diff.magnitude > 0.01f)
-          {
-              transform.rotation = Quaternion.LookRotation(diff);
-          }*/
+    void OnAnimatorMove()
+    {
+        m_Rigidbody.MoveRotation(m_Rotation);
     }
 }
