@@ -30,10 +30,26 @@ public class PoltergeisScript : MonoBehaviour
         Debug.DrawRay(rayStartPosition, rayDirection * distance, Color.red);
 
         // なにかを検出したら
-        if (isHit)
+        if (raycastHit.collider != null)
         {
             // LogにHitしたオブジェクト名を出力
             Debug.Log("HitObject : " + raycastHit.collider.gameObject.name);
+            
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                // 当たったオブジェクトが花瓶であるかを確認
+                if (isHit.collider.gameObject.CompareTag("Vase"))
+                {
+                    // 花瓶のアニメーションを開始
+                    VaseAnimation vaseAnim = raycastHit.collider.gameObject.GetComponent<VaseAnimScript>();
+
+                    if (vaseAnim != null)
+                    {
+                        vaseAnim.StartAnimation();
+                    }
+                }
+
+            }
         }
     }
 }
