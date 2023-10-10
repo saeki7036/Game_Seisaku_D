@@ -6,10 +6,12 @@ public class PoltergeisScript : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] float distance = 0.8f;    // 検出可能な距離
+
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -30,25 +32,25 @@ public class PoltergeisScript : MonoBehaviour
         Debug.DrawRay(rayStartPosition, rayDirection * distance, Color.red);
 
         // なにかを検出したら
-        if (raycastHit.collider != null)
+        if (isHit)
         {
+            Debug.Log("A");
             // LogにHitしたオブジェクト名を出力
             Debug.Log("HitObject : " + raycastHit.collider.gameObject.name);
-            
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (raycastHit.collider.CompareTag("Vase"))
             {
-                // 当たったオブジェクトが花瓶であるかを確認
-                if (isHit.collider.gameObject.CompareTag("Vase"))
+                Debug.Log("B");
+                if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    // 花瓶のアニメーションを開始
-                    VaseAnimation vaseAnim = raycastHit.collider.gameObject.GetComponent<VaseAnimScript>();
-
-                    if (vaseAnim != null)
+                    Debug.Log("C");
+                    var vaseRb = raycastHit.collider.gameObject.GetComponent<Rigidbody>();
+                    if (vaseRb != null)
                     {
-                        vaseAnim.StartAnimation();
+                        vaseRb.velocity = new Vector3(1f, 0, 0);
+                        Debug.Log("aA");
                     }
                 }
-
+  
             }
         }
     }

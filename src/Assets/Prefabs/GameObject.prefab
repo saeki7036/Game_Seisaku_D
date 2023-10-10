@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6509402657573291519}
   - component: {fileID: 6509402657573291504}
   - component: {fileID: 6509402657573291505}
-  - component: {fileID: 6509402657573291506}
+  - component: {fileID: 411628899390932126}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1502
+  m_VersionIndex: 1508
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -325,7 +325,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6509402657573291506
+--- !u!114 &411628899390932126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6509402658429037235}
   - component: {fileID: 6509402658429037234}
-  - component: {fileID: 6509402658429037233}
+  - component: {fileID: 548190362763938493}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -614,7 +614,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.96, y: 4.06, z: 5.55}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6509402658429037233
+--- !u!114 &548190362763938493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

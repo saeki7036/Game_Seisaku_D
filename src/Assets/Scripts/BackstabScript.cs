@@ -22,13 +22,13 @@ public class BackstabScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("1");
+        
             textObject.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("2");
+     
         textObject.SetActive(false);
     }
 }
