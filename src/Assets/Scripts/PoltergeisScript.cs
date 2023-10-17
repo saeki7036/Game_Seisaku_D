@@ -50,7 +50,24 @@ public class PoltergeisScript : MonoBehaviour
                         Debug.Log("aA");
                     }
                 }
-  
+
+            }
+            else if (raycastHit.collider.CompareTag("Hide"))
+            {
+                Debug.Log("BB");
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    Transform hitTransform = raycastHit.transform;
+                    Debug.Log("HitObject's Transform: " + hitTransform.name);
+
+                    BoxCollider boxCollider = raycastHit.collider.gameObject.GetComponent<BoxCollider>();
+                    if (boxCollider != null)
+                    {
+                        boxCollider.isTrigger = true;
+                    }
+                    GetComponent<Playercontroller>().enabled = false;
+
+                }
             }
         }
     }
