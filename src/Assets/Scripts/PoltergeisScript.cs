@@ -34,27 +34,27 @@ public class PoltergeisScript : MonoBehaviour
         // なにかを検出したら
         if (isHit)
         {
-            Debug.Log("A");
+           // Debug.Log("A");
             // LogにHitしたオブジェクト名を出力
             Debug.Log("HitObject : " + raycastHit.collider.gameObject.name);
             if (raycastHit.collider.CompareTag("Vase"))
             {
-                Debug.Log("B");
+               // Debug.Log("B");
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    Debug.Log("C");
+                   // Debug.Log("C");
                     var vaseRb = raycastHit.collider.gameObject.GetComponent<Rigidbody>();
                     if (vaseRb != null)
                     {
                         vaseRb.velocity = new Vector3(1f, 0, 0);
-                        Debug.Log("aA");
+                        //Debug.Log("aA");
                     }
                 }
 
             }
-            else if (raycastHit.collider.CompareTag("Hide"))
+           /* else if (raycastHit.collider.CompareTag("Hide"))
             {
-                Debug.Log("BB");
+               // Debug.Log("BB");
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     Transform hitTransform = raycastHit.transform;
@@ -68,7 +68,7 @@ public class PoltergeisScript : MonoBehaviour
                     GetComponent<Playercontroller>().enabled = false;
 
                 }
-            }
+            }*/
         }
     }
 }
