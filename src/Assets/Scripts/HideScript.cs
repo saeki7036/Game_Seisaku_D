@@ -5,16 +5,16 @@ using UnityEngine;
 public class HideScript : MonoBehaviour
 {
     public GameObject textObject;
-    public Transform inSidePoint;
-    public Transform outSidePoint;
-    public float moveSpeed = 5.0f;
+    private bool isPlayerInside = false;
+    private Transform InSidePoint;
+    private Transform OutSidePoint;
+    private Transform nowPoint;
+    bool HideMode = false;
+
+    [SerializeField] float moveSpeed = 5.0f;
 
     private Playercontroller playerController;
     private BoxCollider boxCollider;
-    private Transform nowPoint;
-    private bool isPlayerInside = false;
-    private bool hideMode = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,34 +29,43 @@ public class HideScript : MonoBehaviour
             // プレイヤーがエリア内にいる場合の処理
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                ToggleHideMode();
+                HideMode = !HideMode;
+
+
+                ChangeHide();
             }
-           
+
         }
     }
 
-    void ToggleHideMode()
+    void ChangeHide()
     {
-        hideMode = !hideMode;
-
-        if (playerController != null)
+        if (HideMode)
         {
-            playerController.enabled = !hideMode;
-        }
+            if (playerController != null)
+            {
+                playerController.enabled = false;
+            }
+            if (boxCollider != null)
+            {
+                boxCollider.isTrigger = true;
+            }
+            MoveToTarget(nowPoint.position, InSidePoint.position);
 
-        if (boxCollider != null)
-        {
-            boxCollider.isTrigger = hideMode;
-        }
-
-        if (hideMode)
-        {
-            MoveToTarget(nowPoint.position, inSidePoint.position);
         }
         else
         {
-            nowPoint.LookAt(outSidePoint);
-            MoveToTarget(nowPoint.position, outSidePoint.position);
+            if (playerController != null)
+            {
+                playerController.enabled = true;
+            }
+            if (boxCollider != null)
+            {
+                boxCollider.isTrigger = false;
+            }
+            nowPoint.LookAt(OutSidePoint);
+            MoveToTarget(nowPoint.position, OutSidePoint.position);
+
         }
     }
 
@@ -75,9 +84,9 @@ public class HideScript : MonoBehaviour
             playerController = GetComponent<Playercontroller>();
             isPlayerInside = true;
             textObject.SetActive(true);
-            outSidePoint = col.transform.GetChild(0);
-            inSidePoint = col.transform.GetChild(1);
-            nowPoint = transform;
+            OutSidePoint = col.transform.GetChild(0);
+            InSidePoint = col.transform.GetChild(1);
+            nowPoint = this.transform;
         }
     }
 
