@@ -16,7 +16,7 @@ public class Playercontroller : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
       
             float horizontal = Input.GetAxis("Horizontal");
@@ -27,14 +27,10 @@ public class Playercontroller : MonoBehaviour
 
             Vector3 desiredForward = Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
             m_Rotation = Quaternion.LookRotation(desiredForward);
-
+        
+            Move();
          
     }
-
-     void FixedUpdate()
-     {
-         Move();
-     }
 
     void Move()
     {
