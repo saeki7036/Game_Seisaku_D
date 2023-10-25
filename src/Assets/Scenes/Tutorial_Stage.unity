@@ -6933,7 +6933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785064376}
   m_LocalRotation: {x: 0.21698476, y: -0.0076517686, z: -0.000635072, w: 0.97614485}
-  m_LocalPosition: {x: 0.5101849, y: 5.6860743, z: 0.65361124}
+  m_LocalPosition: {x: 0.5101849, y: 7.2360744, z: 0.65361124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10460,7 +10460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182529197}
   m_LocalRotation: {x: 0.21698476, y: -0.0076517686, z: -0.000635072, w: 0.97614485}
-  m_LocalPosition: {x: 0.5101849, y: 5.6860743, z: 0.65361124}
+  m_LocalPosition: {x: 0.5101849, y: 7.2360744, z: 0.65361124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11026,7 +11026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2038393667076242013, guid: d4a04ceb455df68499ac77d19c95c5a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2038393667076242013, guid: d4a04ceb455df68499ac77d19c95c5a6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11060,6 +11060,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2038393667076242027, guid: d4a04ceb455df68499ac77d19c95c5a6, type: 3}
+      propertyPath: textObject
+      value: 
+      objectReference: {fileID: 1675190384}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4a04ceb455df68499ac77d19c95c5a6, type: 3}
 --- !u!43 &1238670694
@@ -14489,7 +14493,7 @@ GameObject:
   - component: {fileID: 1675190387}
   - component: {fileID: 1675190386}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HideText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15939,7 +15943,7 @@ GameObject:
   - component: {fileID: 1949693836}
   - component: {fileID: 1949693835}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PowText
   m_TagString: PowImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
