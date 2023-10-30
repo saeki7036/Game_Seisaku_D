@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HideScript : MonoBehaviour
 {
-    public GameObject textObject;
+    public GameObject HidetextObject;
     private bool isPlayerInside = false;
     private Transform InSidePoint;
     private Transform OutSidePoint;
@@ -15,10 +17,13 @@ public class HideScript : MonoBehaviour
 
     private Playercontroller playerController;
     private BoxCollider boxCollider;
+
+    private TextMeshProUGUI hidetextComponent;
     // Start is called before the first frame update
     void Start()
     {
-        textObject.SetActive(false);
+        HidetextObject.SetActive(false);
+        hidetextComponent = HidetextObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -50,6 +55,7 @@ public class HideScript : MonoBehaviour
             {
                 boxCollider.isTrigger = true;
             }
+            hidetextComponent.text = "Exit!!!!";
             MoveToTarget(nowPoint.position, InSidePoint.position);
 
         }
@@ -64,6 +70,7 @@ public class HideScript : MonoBehaviour
                 boxCollider.isTrigger = false;
             }
             nowPoint.LookAt(OutSidePoint);
+            hidetextComponent.text = "Hide!!!!";
             MoveToTarget(nowPoint.position, OutSidePoint.position);
 
         }
@@ -83,16 +90,16 @@ public class HideScript : MonoBehaviour
             boxCollider = parentTransform.GetComponent<BoxCollider>();
             playerController = GetComponent<Playercontroller>();
             isPlayerInside = true;
-            textObject.SetActive(true);
+            HidetextObject.SetActive(true);
             OutSidePoint = col.transform.GetChild(0);
             InSidePoint = col.transform.GetChild(1);
             nowPoint = this.transform;
         }
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         isPlayerInside = false;
-        textObject.SetActive(false);
+        HidetextObject.SetActive(false);
     }
 }
