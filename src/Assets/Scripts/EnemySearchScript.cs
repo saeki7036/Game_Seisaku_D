@@ -172,7 +172,7 @@ public class EnemySearchScript : MonoBehaviour
             Interval = 0.0f;
 
         agent.destination = player.transform.position;
-
+        Debug.Log(player.transform.position);
         if (!_VisbilityTrigger.visbilityEnter && Interval > ChaseInterval)
         {
             Interval = 0.0f;

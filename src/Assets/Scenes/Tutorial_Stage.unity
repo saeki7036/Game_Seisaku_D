@@ -6839,6 +6839,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4219382124910584311, guid: b0e906ab7681da1449185520500b8890, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1977792894}
+    - target: {fileID: 4219382124910584311, guid: b0e906ab7681da1449185520500b8890, type: 3}
       propertyPath: StopRotation
       value: 0.1
       objectReference: {fileID: 0}
@@ -15837,6 +15841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1785830569535343400, guid: b0e906ab7681da1449185520500b8890, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3232489988407875617, guid: b0e906ab7681da1449185520500b8890, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15885,6 +15893,10 @@ PrefabInstance:
       propertyPath: Speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4219382124910584311, guid: b0e906ab7681da1449185520500b8890, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1977792894}
     - target: {fileID: 4219382124910584311, guid: b0e906ab7681da1449185520500b8890, type: 3}
       propertyPath: StopRotation
       value: 0.1
