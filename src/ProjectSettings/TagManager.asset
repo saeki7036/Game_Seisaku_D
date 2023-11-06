@@ -9,6 +9,9 @@ TagManager:
   - Vase
   - Hide
   - Enemy
+  - Behind
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX
