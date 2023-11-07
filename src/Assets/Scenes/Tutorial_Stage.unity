@@ -3270,6 +3270,56 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &398813727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398813729}
+  - component: {fileID: 398813728}
+  m_Layer: 0
+  m_Name: EventControll
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &398813728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398813727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd0820d4f04f6d478a0db746f2dd3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemis:
+  - {fileID: 795075460}
+  - {fileID: 939259500}
+  _Player: {fileID: 919132148388247465}
+  _Interbal: 3
+  _distance: 15
+--- !u!4 &398813729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398813727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400495133
 GameObject:
   m_ObjectHideFlags: 0
@@ -22157,6 +22207,11 @@ Transform:
   m_Father: {fileID: 1241183105}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &795075460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1544374553368986454, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
+  m_PrefabInstance: {fileID: 1957763919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &816205667
 Mesh:
   m_ObjectHideFlags: 0
@@ -22350,10 +22405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdf67af49dc32149b8c932dad5d89fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-  - {fileID: 492888014}
-  doors:
-  - {fileID: 1928065028}
 --- !u!4 &821398137
 Transform:
   m_ObjectHideFlags: 0
@@ -22697,6 +22748,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &939259500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1544374553368986454, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
+  m_PrefabInstance: {fileID: 2776601644152809792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &942265140
 GameObject:
   m_ObjectHideFlags: 0
@@ -30042,7 +30098,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17510
+  m_Name: pb_Mesh-34436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
