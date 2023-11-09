@@ -37,6 +37,8 @@ public class EnemySearchScript : MonoBehaviour
     [Header("ŠŽƒAƒCƒeƒ€")]
     public GameObject DropItem;
 
+    private bool MadeItem;
+
     private int destPoint = 0;
     private NavMeshAgent agent;
     private float Interval;
@@ -82,23 +84,24 @@ public class EnemySearchScript : MonoBehaviour
         destPoint = 0;
         agent.destination = Waypoints[destPoint].position;
         agent.speed = Speed;
+        MadeItem = true;
     }
     void ChangeMove()
     {
-        if (_LIghtTrigger.lightEnter && EnemyMove != Move.Escape)
+        if (_LIghtTrigger.lightEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
         {
             EnemyMove = Move.Light;
             return;
         }
 
-        if (_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape)
+        if (_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
         {
             if (BeforeMove != Move.Light)
                 EnemyMove = Move.Chase;
             return;
         }
 
-        if (_BehindTrigger.behindEnter)
+        if (_BehindTrigger.behindEnter && EnemyMove != Move.None)
         {
             EnemyMove = Move.Escape;
             return;
@@ -110,7 +113,12 @@ public class EnemySearchScript : MonoBehaviour
     {
         ChangeMove();
 
-        if (EnemyMove == Move.Escape)
+        if (EnemyMove == Move.None)
+        {
+            NoneCommand();
+        }
+
+        else if (EnemyMove == Move.Escape)
         {
             EscapeCommand();
         }
@@ -140,6 +148,18 @@ public class EnemySearchScript : MonoBehaviour
         BeforeMove = EnemyMove;
     }
 
+    void NoneCommand()
+    {
+        if (BeforeMove != EnemyMove)
+        {
+            Interval = 0.0f;
+        }
+
+        Interval += Time.deltaTime;
+
+        if (Interval > 3f)
+            EnemyMove = Move.Search;
+    }
     void SearchCommand()
     {
         if (BeforeMove != EnemyMove)
@@ -242,15 +262,23 @@ public class EnemySearchScript : MonoBehaviour
             Interval = 0.0f;
 
             agent.speed = 2.0f;
-            Destroy(gameObject, 5.0f);
+
             agent.destination = transform.position - (player.transform.position - transform.position) * 2;
+            Invoke("ActiveChange", 3.0f);
+            EnemyMove = Move.None;
         }
-        if (DropItem && BeforeMove != EnemyMove)
-            CreateItem();
+
+        if (DropItem && BeforeMove != EnemyMove && MadeItem)
+                Invoke("CreateItem", 2.0f);
     }
 
+    void ActiveChange()
+    {
+        this.gameObject.SetActive(false);
+    }
     void CreateItem()
     {
+        MadeItem = false;
         GameObject obj = Instantiate(DropItem, transform.position, Quaternion.identity);
     }
 
