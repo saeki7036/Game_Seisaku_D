@@ -43,7 +43,7 @@ public class EnemySearchScript : MonoBehaviour
     private NavMeshAgent agent;
     private float Interval;
 
-    enum Move
+    public enum Move
     {
         None,
         Light,
@@ -51,9 +51,15 @@ public class EnemySearchScript : MonoBehaviour
         Chase,
         Search,
         Stop,
+        Heard,
     };
 
-    Move EnemyMove, BeforeMove;
+    [Space]
+    [Space]
+    [Header("行動　(基本動かさない)")]
+    public Move EnemyMove; 
+
+    private Move BeforeMove;
 
     [Space]
     [Header("トリガーの名称はすべて分けてほしい")]
@@ -133,6 +139,11 @@ public class EnemySearchScript : MonoBehaviour
             LightCommand();
         }
 
+        else if (EnemyMove == Move.Heard)
+        {
+            HeardCommand();
+        }
+
         else if (EnemyMove == Move.Chase)
         {
             ChaseCommand();
@@ -169,6 +180,7 @@ public class EnemySearchScript : MonoBehaviour
 
         if (agent.speed != Speed)
             agent.speed = Speed;
+
         if (BeforeMove != EnemyMove)
             agent.destination = Waypoints[destPoint].position;
         // エージェントが現目標地点に近づいてきたら次の目標地点を選択
@@ -210,12 +222,12 @@ public class EnemySearchScript : MonoBehaviour
         agent.speed = 0.0f;
 
         // ターゲットへの向きベクトル計算
-        var dir = player.transform.position - transform.position;
-
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0.0f;
         // ターゲットの方向への回転
-        transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-
-        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+        
+        Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 0.3f);
 
         //agent.destination = transform.position;
 
@@ -223,6 +235,29 @@ public class EnemySearchScript : MonoBehaviour
         {
             EnemyMove = Move.Stop;
         }
+    }
+
+    void HeardCommand()
+    {
+        if (BeforeMove != EnemyMove)
+        {
+            Vector3 temp_pos = new Vector3();
+            GameObject[] Binns = GameObject.FindGameObjectsWithTag("Fall");
+            HaerdSoundsScript[] Script = new HaerdSoundsScript[Binns.Length];
+
+            for (int i = 0; i < Binns.Length; i++)
+            {
+                temp_pos = Binns[i].transform.position;
+                Script[i] = Binns[i].GetComponent<HaerdSoundsScript>();
+
+                if (Script[i].Chack == 1)
+                    break;
+            }
+            agent.destination = temp_pos;
+        }
+
+        if (!agent.pathPending && agent.remainingDistance < 1f)
+            EnemyMove = Move.Stop;
     }
 
     void StopCommand()
@@ -276,6 +311,7 @@ public class EnemySearchScript : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
     void CreateItem()
     {
         MadeItem = false;
@@ -307,5 +343,4 @@ public class EnemySearchScript : MonoBehaviour
         // エージェントが現在設定された目標地点に行くように設定
         agent.destination = Waypoints[destPoint].position;
     }
-
 }

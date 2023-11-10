@@ -53,10 +53,6 @@ public class FeedScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Red);
-        Debug.Log(Green);
-        Debug.Log(Blue);
-
         if (alfa >= Min_byte && alfa <= Max_byte && Feed_Move != Feed.None && Strat_Move)
         {
             Feed_Color = new Color32(Red, Green, Blue, (byte)alfa);

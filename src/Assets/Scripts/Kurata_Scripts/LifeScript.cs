@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LifeScript : MonoBehaviour
 {
     public int maxHealth = 3;
-    private int currentHealth;
+    public int currentHealth;
     public Image[] healthImages;
     public GameObject gameOverUI;
 
