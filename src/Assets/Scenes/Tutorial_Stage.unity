@@ -2784,7 +2784,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1501328
+  m_Name: pb_Mesh24842
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4694,8 +4694,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1867647308083283173, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867647308083283173, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867647308083283173, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.86
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044915475161522358, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: m_Radius
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2044915475161522358, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
       propertyPath: m_Enabled
@@ -22066,6 +22078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727453448}
   - component: {fileID: 727453447}
+  - component: {fileID: 727453449}
   m_Layer: 0
   m_Name: EventController
   m_TagString: Untagged
@@ -22089,7 +22102,7 @@ MonoBehaviour:
   - {fileID: 2776601644152809793}
   - {fileID: 1957763920}
   _Player: {fileID: 919132148388247465}
-  _Interbal: 3
+  _Interbal: 15
   _distance: 15
 --- !u!4 &727453448
 Transform:
@@ -22106,6 +22119,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727453449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727453446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a752e085e4d34344ba3cd773848a7f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene_Nam: 1
+  _Pleyer: {fileID: 919132148388247465}
 --- !u!1 &742029883
 GameObject:
   m_ObjectHideFlags: 0
@@ -27574,6 +27601,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1410012626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4643305409298582327, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+  m_PrefabInstance: {fileID: 559068145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1410012629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410012626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4c7c665d96f6948bdccc8915fc4aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy:
+  - {fileID: 2776601644152809793}
+  - {fileID: 1957763920}
+  Distanse: 40
+  Chack: 0
 --- !u!43 &1449950796
 Mesh:
   m_ObjectHideFlags: 0
@@ -28610,7 +28659,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-309126
+  m_Name: pb_Mesh-3450
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31381,6 +31430,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8803725603173020880, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803725603173020880, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 919132148388247465}
@@ -31388,6 +31441,10 @@ PrefabInstance:
       propertyPath: DropItem
       value: 
       objectReference: {fileID: 694197460870630382, guid: d8334362209a429498a8436c78fd8bac, type: 3}
+    - target: {fileID: 8803725603173020880, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
+      propertyPath: EnemyMove
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8803725603173020880, guid: 3119fb1413601174ca1f067a8893c302, type: 3}
       propertyPath: Waypoints.Array.size
       value: 4
@@ -32414,11 +32471,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  currentHealth: 0
   healthImages:
   - {fileID: 742029885}
   - {fileID: 1997385490}
   - {fileID: 1482041219}
   gameOverUI: {fileID: 2141525741}
+--- !u!114 &919132148388247480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148388247465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d85037fc7e5f448add5c24d84834d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: 1
 --- !u!1001 &2776601644152809792
 PrefabInstance:
   m_ObjectHideFlags: 0
