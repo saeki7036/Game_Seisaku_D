@@ -12,6 +12,8 @@ TagManager:
   - Behind
   - Key
   - Door
+  - Fall
+  - Pol
   layers:
   - Default
   - TransparentFX

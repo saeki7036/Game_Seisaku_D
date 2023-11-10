@@ -27,15 +27,16 @@ public class BehindArea : MonoBehaviour
             behindEnter = true;
             // ImageUI‚ð•\Ž¦‚·‚é
             image.gameObject.SetActive(true);
+            textObject.SetActive(false);
         }
     }
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
            // behindEnter = true; Debug.Log(behindEnter);
             playerInsideArea = true;
-            textObject.SetActive(false);
+            textObject.SetActive(true);
         }
     }
 
@@ -46,7 +47,7 @@ public class BehindArea : MonoBehaviour
             Debug.Log("1");
             image.gameObject.SetActive(false);
             playerInsideArea = false;
-            textObject.SetActive(false);
+            
             behindEnter = false;
         }
     }
