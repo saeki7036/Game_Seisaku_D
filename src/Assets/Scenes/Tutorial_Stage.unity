@@ -2860,7 +2860,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54144
+  m_Name: pb_Mesh88378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4781,13 +4781,33 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 382428553}
+    - target: {fileID: 2228304655568054984, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: Chack
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228304655568054984, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: Distanse
+      value: 34.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228304655568054984, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: Enemy.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228304655568054984, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: Enemy.Array.data[0]
+      value: 
+      objectReference: {fileID: 2776601644152809793}
+    - target: {fileID: 2228304655568054984, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
+      propertyPath: Enemy.Array.data[1]
+      value: 
+      objectReference: {fileID: 1957763920}
     - target: {fileID: 3470630834988298254, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 382428553}
     - target: {fileID: 3470630834988298254, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
       propertyPath: m_VersionIndex
-      value: 1661
+      value: 1667
       objectReference: {fileID: 0}
     - target: {fileID: 3510524909238027015, guid: 77d97c38d85cb234baf5c14864faa8df, type: 3}
       propertyPath: m_Mesh
@@ -32689,6 +32709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  currentHealth: 0
   healthImages:
   - {fileID: 742029885}
   - {fileID: 1997385490}
