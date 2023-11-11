@@ -29,6 +29,7 @@ public class BehindArea : MonoBehaviour
             image.gameObject.SetActive(true);
             textObject.SetActive(false);
         }
+
     }
     void OnTriggerEnter(Collider other)
     {
@@ -37,6 +38,7 @@ public class BehindArea : MonoBehaviour
            // behindEnter = true; Debug.Log(behindEnter);
             playerInsideArea = true;
             textObject.SetActive(true);
+            image.gameObject.SetActive(false);
         }
     }
 
@@ -45,7 +47,6 @@ public class BehindArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("1");
-            image.gameObject.SetActive(false);
             playerInsideArea = false;
             
             behindEnter = false;
