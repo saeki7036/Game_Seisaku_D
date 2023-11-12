@@ -26,10 +26,10 @@ public class HaerdSoundsScript : MonoBehaviour
     void Update()
     {
         if (Chack == 1)
-            A();
+            Fall();
     }
 
-    private void A()
+    private void Fall()
     {
         for (int i = 0; i < Enemy.Length; i++)
         {

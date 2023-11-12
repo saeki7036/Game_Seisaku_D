@@ -17,7 +17,7 @@ public class EnemySearchScript : MonoBehaviour
     public Transform[] Waypoints;
 
     [Space]
-    [Header("ŒÅ’è“I‚Ì‰Šú•ûŒü (-180`180)")]
+    [Header("ŒÅ’è“G‚Ì‰Šú•ûŒü (-180`180)")]
     public float StayRotation_y;
 
     [Space]
