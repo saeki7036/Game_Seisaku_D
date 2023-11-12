@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class BehindArea : MonoBehaviour
 {
@@ -22,15 +23,18 @@ public class BehindArea : MonoBehaviour
     void Update()
     {
         // ZÉLÅ[Ç™âüÇ≥ÇÍÇΩÇ∆Ç´
-        if (Input.GetKeyDown(KeyCode.Z) && playerInsideArea)
+        if ((Input.GetKeyDown(KeyCode.Z) && playerInsideArea) || (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea))
         {
+            playerInsideArea = false;
             behindEnter = true;
             // ImageUIÇï\é¶Ç∑ÇÈ
             image.gameObject.SetActive(true);
             textObject.SetActive(false);
         }
-
     }
+
+   
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
