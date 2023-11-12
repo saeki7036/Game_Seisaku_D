@@ -17,6 +17,8 @@ public class ScoreManagerScript : MonoBehaviour
     [Header("プレイヤーオブジェクト")]
     [SerializeField] GameObject _Pleyer;
     LifeScript _Health;
+    [Header("ゴールオブジェクト")]
+    [SerializeField] GameObject _GoalObject;
     Goal _goal;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class ScoreManagerScript : MonoBehaviour
         Scene_Namber = scene_Nam;
 
         _Health = _Pleyer.GetComponent<LifeScript>();
-        _goal = _Pleyer.GetComponent<Goal>();
+        _goal = _GoalObject.GetComponent<Goal>();
 
         Play_Time = 0f;
         _Gole = true;
