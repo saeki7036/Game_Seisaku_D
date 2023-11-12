@@ -41,7 +41,7 @@ public class TitleSceneScript : MonoBehaviour
 
         if(Interval > ChangeTime)
         {
-            SceneManager.LoadSceneAsync("SerectScene");
+            SceneManager.LoadSceneAsync("SelectScene");
         }
     }
 }

@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Start_Image: {fileID: 1128003698}
-  Opsion_Image: {fileID: 778244061}
+  Option_Image: {fileID: 778244061}
   Stage_Image: {fileID: 2110383611}
   Tutorial_Image: {fileID: 406722252}
   Serect_Stege_Image: {fileID: 244082468}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 778244064}
   - component: {fileID: 778244063}
   m_Layer: 5
-  m_Name: Text_opsion
+  m_Name: Text_option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OPSION
+  m_text: OPTION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

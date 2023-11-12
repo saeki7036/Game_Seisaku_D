@@ -7,7 +7,7 @@ public class StageSerectScript : MonoBehaviour
     [Header("スタート画像")]
     [SerializeField] GameObject Start_Image;
     [Header("オプション画像")]
-    [SerializeField] GameObject Opsion_Image;
+    [SerializeField] GameObject Option_Image;
 
     [Space]
     [Header("ステージ画像")]
@@ -110,7 +110,7 @@ public class StageSerectScript : MonoBehaviour
             }
             if (Serect == 1)
             {
-                MoveImage(Opsion_Image);
+                MoveImage(Option_Image);
             }
         }
         if (SerectComand == 1)
