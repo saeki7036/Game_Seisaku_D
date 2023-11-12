@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -17,18 +18,19 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Gamepad.current == null) return;
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Gamepad.current.rightStick.ReadValue().x <= 0 || Input.GetKeyDown(KeyCode.Q))
         {
             transform.RotateAround(player.transform.position, Vector3.up, -rotationSpeed);
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Gamepad.current.rightStick.ReadValue().x >= 0 || Input.GetKeyDown(KeyCode.E))
         {
             transform.RotateAround(player.transform.position, Vector3.up, rotationSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Gamepad.current.buttonNorth.wasReleasedThisFrame)
         {
             transform.rotation = initialRotation;
         }

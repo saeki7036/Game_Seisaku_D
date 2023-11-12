@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class HideScript : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class HideScript : MonoBehaviour
         if (isPlayerInside)
         {
             // プレイヤーがエリア内にいる場合の処理
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Gamepad.current.buttonSouth.wasReleasedThisFrame || Input.GetKeyDown(KeyCode.Z))
             {
                 HideMode = !HideMode;
 
