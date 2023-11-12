@@ -46,9 +46,8 @@ public class BehindArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("1");
             playerInsideArea = false;
-            
+            textObject.SetActive(false);
             behindEnter = false;
         }
     }
