@@ -12,9 +12,20 @@ public class BehindArea : MonoBehaviour
     private bool playerInsideArea = false;
 
     public bool behindEnter;
+
+    Animator m_Animator;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            m_Animator = playerObject.GetComponent<Animator>();
+        }
+        else
+        {
+            Debug.LogError("Player object not found. Make sure it has the 'Player' tag.");
+        }
         textObject.SetActive(false);
         behindEnter = false;
     }
@@ -25,6 +36,9 @@ public class BehindArea : MonoBehaviour
         // ZÉLÅ[Ç™âüÇ≥ÇÍÇΩÇ∆Ç´
         if (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea)// || (Input.GetKeyDown(KeyCode.Z) && playerInsideArea)
         {
+
+            m_Animator.SetBool("Pow", true);
+            Invoke("ResetPowParameter", 3f);
             playerInsideArea = false;
             behindEnter = true;
             // ImageUIÇï\é¶Ç∑ÇÈ
@@ -32,19 +46,23 @@ public class BehindArea : MonoBehaviour
             textObject.SetActive(false);
         }
 
-        if(!playerInsideArea)
+        if (!playerInsideArea)
         {
             textObject.SetActive(false);
         }
     }
 
-   
+    void ResetPowParameter()
+    {
+        m_Animator.SetBool("Pow", false);
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-           // behindEnter = true; Debug.Log(behindEnter);
+
+            // behindEnter = true; Debug.Log(behindEnter);
             playerInsideArea = true;
             //textObject.SetActive(true);
             image.gameObject.SetActive(false);
