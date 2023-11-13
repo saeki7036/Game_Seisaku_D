@@ -41,8 +41,10 @@ public class EnemySearchScript : MonoBehaviour
 
     private int destPoint = 0;
     private NavMeshAgent agent;
+    public GameObject Moush;
+    private SkinnedMeshRenderer blendshape_SMR;
     private float Interval;
-
+    public Animator anim;
     public enum Move
     {
         None,
@@ -91,6 +93,10 @@ public class EnemySearchScript : MonoBehaviour
         agent.destination = Waypoints[destPoint].position;
         agent.speed = Speed;
         MadeItem = true;
+
+        anim.SetBool("Surp", false);
+        anim.SetBool("Stoping", false);
+        blendshape_SMR = Moush.GetComponent<SkinnedMeshRenderer>();
     }
     void ChangeMove()
     {
@@ -121,36 +127,47 @@ public class EnemySearchScript : MonoBehaviour
 
         if (EnemyMove == Move.None)
         {
+            anim.SetBool("Stoping", false);
             NoneCommand();
         }
 
         else if (EnemyMove == Move.Escape)
         {
+            anim.SetBool("Surp", true);
+            blendshape_SMR.SetBlendShapeWeight(0, 0);
+            anim.SetBool("Stoping", false);
             EscapeCommand();
         }
 
         else if (EnemyMove == Move.Stop)
         {
+            anim.SetBool("Stoping", true);
             StopCommand();
         }
 
         else if (EnemyMove == Move.Light)
         {
+            anim.SetBool("Stoping", true);
             LightCommand();
         }
 
         else if (EnemyMove == Move.Heard)
         {
+            anim.SetBool("Stoping", false);
             HeardCommand();
         }
 
         else if (EnemyMove == Move.Chase)
         {
+            anim.SetBool("Stoping", false);
             ChaseCommand();
         }
 
         else if (EnemyMove == Move.Search)
         {
+            anim.SetBool("Stoping", false);
+            anim.SetBool("Surp", false);
+            blendshape_SMR.SetBlendShapeWeight(0, 100);
             SearchCommand();
         }
 
@@ -231,7 +248,7 @@ public class EnemySearchScript : MonoBehaviour
 
         //agent.destination = transform.position;
 
-        if (!_LIghtTrigger.lightEnter && !_VisbilityTrigger.visbilityEnter)
+        if (!_VisbilityTrigger.visbilityEnter)
         {
             EnemyMove = Move.Stop;
         }
