@@ -36,7 +36,7 @@ public class HideScript : MonoBehaviour
         if (isPlayerInside)
         {
             // プレイヤーがエリア内にいる場合の処理
-            if (Gamepad.current.buttonSouth.wasReleasedThisFrame || Input.GetKeyDown(KeyCode.Z))
+            if (Gamepad.current.buttonSouth.wasReleasedThisFrame)// || Input.GetKeyDown(KeyCode.Z)
             {
                 HideMode = !HideMode;
 
@@ -60,7 +60,7 @@ public class HideScript : MonoBehaviour
                 boxCollider.isTrigger = true;
             }
             capsuleCollider.enabled = false;
-            hidetextComponent.text = "Exit!!!!";
+            hidetextComponent.text = "Press [A] to stop hiding";
             MoveToTarget(nowPoint.position, InSidePoint.position);
 
         }
@@ -76,15 +76,18 @@ public class HideScript : MonoBehaviour
             }
             capsuleCollider.enabled = true;
             nowPoint.LookAt(OutSidePoint);
-            hidetextComponent.text = "Hide!!!!";
+            hidetextComponent.text = "Press [A] button";
             MoveToTarget(nowPoint.position, OutSidePoint.position);
 
         }
     }
 
-    void MoveToTarget(Vector3 nowPosition, Vector3 targetPosition)//(現在地、目的地)
+    void MoveToTarget(Vector3 nowPosition, Vector3 targetPosition)
     {
-        // 指定の位置に向かって移動
+        // Keep the y-coordinate fixed
+        targetPosition.y = nowPosition.y;
+
+        // Move along the x and z axes using the targetPosition
         transform.position = Vector3.Lerp(nowPosition, targetPosition, moveSpeed);
     }
 
@@ -102,7 +105,7 @@ public class HideScript : MonoBehaviour
             nowPoint = this.transform;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         isPlayerInside = false;
