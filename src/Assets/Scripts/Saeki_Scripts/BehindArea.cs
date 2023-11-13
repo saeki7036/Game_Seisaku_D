@@ -43,18 +43,18 @@ public class BehindArea : MonoBehaviour
             behindEnter = true;
             // ImageUI‚ð•\Ž¦‚·‚é
             image.gameObject.SetActive(true);
-            textObject.SetActive(false);
-        }
-
-        if (!playerInsideArea)
-        {
-            textObject.SetActive(false);
+            Invoke("ResetPowParameter", 0.5f);
         }
     }
 
     void ResetPowParameter()
     {
         m_Animator.SetBool("Pow", false);
+    }
+
+    void PowTextFalse()
+    {
+        textObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -64,7 +64,7 @@ public class BehindArea : MonoBehaviour
 
             // behindEnter = true; Debug.Log(behindEnter);
             playerInsideArea = true;
-            //textObject.SetActive(true);
+            textObject.SetActive(true);
             image.gameObject.SetActive(false);
         }
     }

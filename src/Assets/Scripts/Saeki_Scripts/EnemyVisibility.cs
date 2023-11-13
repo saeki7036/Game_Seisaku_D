@@ -7,12 +7,12 @@ using TMPro;
 public class EnemyVisibility : MonoBehaviour
 {
     public bool visbilityEnter;
-    public GameObject HidetextObject;
+    public GameObject escapetextObject;
     // Start is called before the first frame update
     void Start()
     {
         visbilityEnter = false;
-        HidetextObject.SetActive(false);
+        escapetextObject.SetActive(false);
         //hidetextComponent = HidetextObject.GetComponent<TextMeshProUGUI>();
     }
 
@@ -26,7 +26,7 @@ public class EnemyVisibility : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            HidetextObject.SetActive(true);
+            escapetextObject.SetActive(true);
             visbilityEnter = true; Debug.Log(visbilityEnter);
         }
     }
@@ -35,7 +35,7 @@ public class EnemyVisibility : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            HidetextObject.SetActive(false);
+            escapetextObject.SetActive(false);
             visbilityEnter = false;
         }
     }

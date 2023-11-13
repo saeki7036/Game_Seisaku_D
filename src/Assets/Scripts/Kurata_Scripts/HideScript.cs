@@ -60,7 +60,7 @@ public class HideScript : MonoBehaviour
                 boxCollider.isTrigger = true;
             }
             capsuleCollider.enabled = false;
-            hidetextComponent.text = "Exit!!!!";
+            hidetextComponent.text = "Press [A] to stop hiding";
             MoveToTarget(nowPoint.position, InSidePoint.position);
 
         }
@@ -76,7 +76,7 @@ public class HideScript : MonoBehaviour
             }
             capsuleCollider.enabled = true;
             nowPoint.LookAt(OutSidePoint);
-            hidetextComponent.text = "Hide!!!!";
+            hidetextComponent.text = "Press [A] button";
             MoveToTarget(nowPoint.position, OutSidePoint.position);
 
         }
