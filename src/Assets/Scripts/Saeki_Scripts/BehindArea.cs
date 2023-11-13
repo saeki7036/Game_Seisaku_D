@@ -23,7 +23,7 @@ public class BehindArea : MonoBehaviour
     void Update()
     {
         // ZƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
-        if ((Input.GetKeyDown(KeyCode.Z) && playerInsideArea))// || (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea)
+        if (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea)// || (Input.GetKeyDown(KeyCode.Z) && playerInsideArea)
         {
             playerInsideArea = false;
             behindEnter = true;
