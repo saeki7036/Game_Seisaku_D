@@ -82,9 +82,12 @@ public class HideScript : MonoBehaviour
         }
     }
 
-    void MoveToTarget(Vector3 nowPosition, Vector3 targetPosition)//(現在地、目的地)
+    void MoveToTarget(Vector3 nowPosition, Vector3 targetPosition)
     {
-        // 指定の位置に向かって移動
+        // Keep the y-coordinate fixed
+        targetPosition.y = nowPosition.y;
+
+        // Move along the x and z axes using the targetPosition
         transform.position = Vector3.Lerp(nowPosition, targetPosition, moveSpeed);
     }
 
@@ -102,7 +105,7 @@ public class HideScript : MonoBehaviour
             nowPoint = this.transform;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         isPlayerInside = false;
