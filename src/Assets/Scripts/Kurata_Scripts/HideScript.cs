@@ -85,7 +85,7 @@ public class HideScript : MonoBehaviour
     void MoveToTarget(Vector3 nowPosition, Vector3 targetPosition)
     {
         // Keep the y-coordinate fixed
-        targetPosition.y = nowPosition.y;
+        targetPosition.y = 2f;
 
         // Move along the x and z axes using the targetPosition
         transform.position = Vector3.Lerp(nowPosition, targetPosition, moveSpeed);

@@ -14,10 +14,11 @@ public class BehindArea : MonoBehaviour
     public bool behindEnter;
 
     Animator m_Animator;
+    private GameObject playerObject;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             m_Animator = playerObject.GetComponent<Animator>();
@@ -43,9 +44,20 @@ public class BehindArea : MonoBehaviour
             behindEnter = true;
             // ImageUI‚ð•\Ž¦‚·‚é
             image.gameObject.SetActive(true);
-            Invoke("ResetPowParameter", 0.5f);
+            Invoke("PowTextFalse", 0.5f);
+
+
+            if (behindEnter && playerObject != null)
+            {
+                transform.LookAt(this.transform);
+            }
         }
     }
+
+    /*public void PowAnimEnd()
+    {
+        Debug.Log("ENDANIM");
+    }*/
 
     void ResetPowParameter()
     {
