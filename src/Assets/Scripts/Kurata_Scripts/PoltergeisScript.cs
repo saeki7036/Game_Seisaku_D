@@ -28,7 +28,7 @@ public class PoltergeisScript : MonoBehaviour
         if (isPlayerInside)
         {
             // プレイヤーがエリア内にいる場合の処理
-            if (Gamepad.current.buttonSouth.wasReleasedThisFrame || Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))//Gamepad.current.buttonSouth.wasReleasedThisFrame || 
             {
                 if (parentAnimator != null)
                 {

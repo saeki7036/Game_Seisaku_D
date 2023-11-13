@@ -23,12 +23,17 @@ public class BehindArea : MonoBehaviour
     void Update()
     {
         // ZÉLÅ[Ç™âüÇ≥ÇÍÇΩÇ∆Ç´
-        if ((Input.GetKeyDown(KeyCode.Z) && playerInsideArea) || (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea))
+        if ((Input.GetKeyDown(KeyCode.Z) && playerInsideArea))// || (Gamepad.current.buttonEast.wasReleasedThisFrame && playerInsideArea)
         {
             playerInsideArea = false;
             behindEnter = true;
             // ImageUIÇï\é¶Ç∑ÇÈ
             image.gameObject.SetActive(true);
+            textObject.SetActive(false);
+        }
+
+        if(!playerInsideArea)
+        {
             textObject.SetActive(false);
         }
     }
@@ -41,7 +46,7 @@ public class BehindArea : MonoBehaviour
         {
            // behindEnter = true; Debug.Log(behindEnter);
             playerInsideArea = true;
-            textObject.SetActive(true);
+            //textObject.SetActive(true);
             image.gameObject.SetActive(false);
         }
     }
