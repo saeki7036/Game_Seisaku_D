@@ -72,6 +72,8 @@ public class EnemySearchScript : MonoBehaviour
     [SerializeField] GameObject Behind;
     BehindArea _BehindTrigger;
 
+    HideScript _Hide;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -85,6 +87,8 @@ public class EnemySearchScript : MonoBehaviour
         _VisbilityTrigger = Visbility.GetComponent<EnemyVisibility>();
 
         _BehindTrigger = Behind.GetComponent<BehindArea>();
+
+        _Hide = player.GetComponent<HideScript>();
 
         EnemyMove = Move.Search;
         BeforeMove = Move.None;
@@ -106,12 +110,14 @@ public class EnemySearchScript : MonoBehaviour
             return;
         }
 
-        if (_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
+        if (!_Hide.HideMode &&_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
         {
             if (BeforeMove != Move.Light)
                 EnemyMove = Move.Chase;
             return;
         }
+        else
+            _VisbilityTrigger.visbilityEnter = false;
 
         if (_BehindTrigger.behindEnter && EnemyMove != Move.None)
         {
