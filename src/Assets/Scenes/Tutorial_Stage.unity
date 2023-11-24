@@ -35871,6 +35871,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2143162261}
+    - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: escapetextObject
       value: 
       objectReference: {fileID: 5374275}
@@ -35889,6 +35893,10 @@ PrefabInstance:
     - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_Name
       value: Enemy_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3228219083381534393, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37577,6 +37585,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916283849}
     m_Modifications:
+    - target: {fileID: 282937867606084276, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: _sight_angle_Y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 282937867606084276, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: _sight_range_Y
+      value: 12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 682651255798549755, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -37626,6 +37642,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2143162261}
+    - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: escapetextObject
       value: 
       objectReference: {fileID: 5374275}
@@ -37640,6 +37660,10 @@ PrefabInstance:
     - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_Name
       value: Enemy_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3049229581480637031, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_IsActive
@@ -42617,6 +42641,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2143162261}
+    - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: escapetextObject
       value: 
       objectReference: {fileID: 5374275}
@@ -42651,6 +42679,10 @@ PrefabInstance:
     - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_Name
       value: Enemy_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230839480702120901, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3049229581480637031, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: m_IsActive
@@ -44921,6 +44953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HidetextObject: {fileID: 1675190384}
+  HideMode: 0
   moveSpeed: 5
 --- !u!95 &2143162267
 Animator:
@@ -45079,6 +45112,10 @@ PrefabInstance:
       value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2143162261}
+    - target: {fileID: 1119361593755470540, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: HidetextObject
       value: 
       objectReference: {fileID: 5374275}
@@ -45195,8 +45232,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2143162261}
     - target: {fileID: 8193786066692408387, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
+      propertyPath: Random_turn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193786066692408387, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: StopRotation
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8193786066692408387, guid: 12606cc1ace44e34b8cae815f1936e47, type: 3}
       propertyPath: Waypoints.Array.size

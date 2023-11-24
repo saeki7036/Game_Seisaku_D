@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 682651255798549755}
   - component: {fileID: 5667462303920391678}
   - component: {fileID: 8193786066692408387}
+  - component: {fileID: 282937867606084276}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -367,12 +368,30 @@ MonoBehaviour:
   ChaseInterval: 2
   StopInterval: 3
   DropItem: {fileID: 754388690360800689, guid: ad92d72756b82f04fa0fe923286cfd8a, type: 3}
+  Random_turn: 3
   Moush: {fileID: 2473725019054486800}
   anim: {fileID: 1985943247451239902}
   EnemyMove: 0
-  Light: {fileID: 9099586007225960550}
   Visbility: {fileID: 6564157374385994716}
   Behind: {fileID: 1683163183791725287}
+--- !u!114 &282937867606084276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230839480702120901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee0d55117e5aff44bf451c367efc85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 2230839480702120901}
+  _sight_range_Y: 12.5
+  _sight_angle_Y: 55
+  Mat_Y: {fileID: 2100000, guid: 35f2b8f202c4b034081762ff387f3624, type: 2}
+  Mat_R: {fileID: 2100000, guid: cf16d82bdbf13fd49a5faf3b92dbf09f, type: 2}
+  Visbility: {fileID: 6564157374385994716}
 --- !u!1 &2881666003937955667
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visbilityEnter: 0
   escapetextObject: {fileID: 0}
+  TimeOvercontroll: 0
+  Interval: 3
 --- !u!1 &7022758428865523521
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4296671186544509163
 Transform:
   m_ObjectHideFlags: 0
