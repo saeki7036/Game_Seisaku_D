@@ -5,46 +5,6 @@ using UnityEngine.AI;
 
 public class EnemySearchScript : MonoBehaviour
 {
-    [Header("プレイヤーのオブジェクトぶち込む")]
-    [SerializeField] GameObject player;
-
-    [Space]
-    [Header("行動速度 (0.1f～)")]
-    public float Speed = 0.9f;
-
-    [Space]
-    [Header("巡回場所の数及び座標")]
-    public Transform[] Waypoints;
-
-    [Space]
-    [Header("固定敵の初期方向 (-180～180)")]
-    public float StayRotation_y;
-
-    [Space]
-    [Header("周囲確認の振れ幅　(0.1f～)")]
-    public float StopRotation = 0.0f;
-
-
-    [Space]
-    [Header("追跡の継続時間 (0.1f～)")]
-    public float ChaseInterval = 2.0f;
-
-    [Space]
-    [Header("行動後の待機時間 (0.1f～)")]
-    public float StopInterval = 3.0f;
-
-    [Space]
-    [Header("所持アイテム")]
-    public GameObject DropItem;
-
-    private bool MadeItem;
-
-    private int destPoint = 0;
-    private NavMeshAgent agent;
-    public GameObject Moush;
-    private SkinnedMeshRenderer blendshape_SMR;
-    private float Interval;
-    public Animator anim;
     public enum Move
     {
         None,
@@ -56,6 +16,51 @@ public class EnemySearchScript : MonoBehaviour
         Heard,
     };
 
+    [Header("プレイヤーのオブジェクトぶち込む")]
+    [SerializeField] GameObject player;
+
+    [Space]
+    [Header("行動速度 (0.1f～)")]
+    [SerializeField] private float Speed = 0.9f;
+
+    [Space]
+    [Header("巡回場所の数及び座標")]
+    [SerializeField] private Transform[] Waypoints;
+
+    [Space]
+    [Header("固定敵の初期方向 (-180～180)")]
+    [SerializeField] private float StayRotation_y;
+
+    [Space]
+    [Header("周囲確認の振れ幅　(0.1f～)")]
+    [SerializeField] private float StopRotation = 0.0f;
+
+    [Space]
+    [Header("追跡の継続時間 (0.1f～)")]
+    [SerializeField] private float ChaseInterval = 2.0f;
+
+    [Space]
+    [Header("行動後の待機時間 (0.1f～)")]
+    [SerializeField] private float StopInterval = 3.0f;
+
+    [Space]
+    [Header("所持アイテム")]
+    [SerializeField] private GameObject DropItem;
+
+    [Space]
+    [Header("振りむく確率(n * 10 %)"),Range(0,10)]
+    [SerializeField] private int Random_turn = 0;
+
+    
+    [Space]
+    [Header("口のモデル")]
+    [SerializeField] private GameObject Moush;
+
+    
+    [Space]
+    [Header("アニメーター")]
+    [SerializeField] private Animator anim;
+
     [Space]
     [Space]
     [Header("行動　(基本動かさない)")]
@@ -65,12 +70,20 @@ public class EnemySearchScript : MonoBehaviour
 
     [Space]
     [Header("トリガーの名称はすべて分けてほしい")]
-    [SerializeField] GameObject Light;
-    EnemyLight _LIghtTrigger;
-    [SerializeField] GameObject Visbility;
+    //[SerializeField] private GameObject Light;
+    //EnemyLight _LIghtTrigger;
+    [SerializeField] private GameObject Visbility;
     EnemyVisibility _VisbilityTrigger;
-    [SerializeField] GameObject Behind;
+    [SerializeField] private GameObject Behind;
     BehindArea _BehindTrigger;
+
+    HideScript _Hide;
+    private NavMeshAgent agent;
+    private SkinnedMeshRenderer blendshape_SMR;
+
+    private bool MadeItem;
+    private int destPoint;
+    private float Interval;
 
     void Start()
     {
@@ -80,11 +93,13 @@ public class EnemySearchScript : MonoBehaviour
 
         agent.autoBraking = false;
 
-        _LIghtTrigger = Light.GetComponent<EnemyLight>();
+        //_LIghtTrigger = Light.GetComponent<EnemyLight>();
 
         _VisbilityTrigger = Visbility.GetComponent<EnemyVisibility>();
 
         _BehindTrigger = Behind.GetComponent<BehindArea>();
+
+        _Hide = player.GetComponent<HideScript>();
 
         EnemyMove = Move.Search;
         BeforeMove = Move.None;
@@ -100,18 +115,21 @@ public class EnemySearchScript : MonoBehaviour
     }
     void ChangeMove()
     {
-        if (_LIghtTrigger.lightEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
+        Debug.Log(_VisbilityTrigger.TimeOvercontroll);
+        if (!_VisbilityTrigger.TimeOvercontroll && EnemyMove != Move.Escape && EnemyMove != Move.None)
         {
             EnemyMove = Move.Light;
             return;
         }
 
-        if (_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
+        if (!_Hide.HideMode &&_VisbilityTrigger.visbilityEnter && EnemyMove != Move.Escape && EnemyMove != Move.None)
         {
             if (BeforeMove != Move.Light)
                 EnemyMove = Move.Chase;
             return;
         }
+        else
+            _VisbilityTrigger.visbilityEnter = false;
 
         if (_BehindTrigger.behindEnter && EnemyMove != Move.None)
         {
@@ -221,7 +239,7 @@ public class EnemySearchScript : MonoBehaviour
             Interval = 0.0f;
 
         agent.destination = player.transform.position;
-        Debug.Log(player.transform.position);
+        //Debug.Log(player.transform.position);
         if (!_VisbilityTrigger.visbilityEnter && Interval > ChaseInterval)
         {
             Interval = 0.0f;
@@ -359,5 +377,8 @@ public class EnemySearchScript : MonoBehaviour
 
         // エージェントが現在設定された目標地点に行くように設定
         agent.destination = Waypoints[destPoint].position;
+
+        if(Random.Range(0, 10) < Random_turn)//0～10からランダム
+            EnemyMove = Move.Stop;
     }
 }

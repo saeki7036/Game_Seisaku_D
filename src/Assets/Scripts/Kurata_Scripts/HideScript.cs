@@ -12,7 +12,7 @@ public class HideScript : MonoBehaviour
     private Transform InSidePoint;
     private Transform OutSidePoint;
     private Transform nowPoint;
-    bool HideMode = false;
+    public bool HideMode = false;
 
     [SerializeField] float moveSpeed = 5.0f;
 
