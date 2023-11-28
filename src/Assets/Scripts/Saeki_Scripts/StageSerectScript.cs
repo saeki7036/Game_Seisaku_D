@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 public class StageSerectScript : MonoBehaviour
 {
     [Header("スタート画像")]
@@ -38,9 +39,17 @@ public class StageSerectScript : MonoBehaviour
     int SerectComand;
 
     bool EnterImages = false;
+
+    private float leftStickValue;
+    private float rightStickValue;
+    private bool leftStickEnabled;
+    private bool rightStickEnabled;
+
+    private float NeutralValue;
     // Start is called before the first frame update
     void Start()
     {
+        NeutralValue = 0.15f;
         MoveImage(Start_Image);
         SerectControll[0] = 0;
         SerectControll[1] = 0;
@@ -50,12 +59,14 @@ public class StageSerectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        leftStickValue = Gamepad.current.leftStick.ReadValue().y;
+        rightStickValue = Gamepad.current.rightStick.ReadValue().y;
+        if (Gamepad.current.aButton.wasPressedThisFrame)
         {
             GetSerect();
         }
 
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Gamepad.current.dpad.left.wasPressedThisFrame || Gamepad.current.xButton.wasPressedThisFrame)
         {
             SerectComand--;
             if (SerectComand < 0)
@@ -72,32 +83,43 @@ public class StageSerectScript : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Gamepad.current.dpad.up.wasPressedThisFrame || leftStickValue > 0.6f || rightStickValue > 0.6f) //Input.GetKeyDown(KeyCode.UpArrow)
         {
-            SerectControll[SerectComand]--;
+            if (leftStickEnabled && rightStickEnabled)
+            {
+                leftStickEnabled = false;
+                rightStickEnabled = false;
+                SerectControll[SerectComand]--;
 
-            if(SerectControll[SerectComand] < 0)
-                SerectControll[SerectComand] = 0;
+                if (SerectControll[SerectComand] < 0)
+                    SerectControll[SerectComand] = 0;
 
-            GetImage(SerectControll[SerectComand]);
+                GetImage(SerectControll[SerectComand]);
+            }
         }
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Gamepad.current.dpad.down.wasPressedThisFrame || leftStickValue < -0.6f || rightStickValue < -0.6f) //Input.GetKeyDown(KeyCode.DownArrow)
         {
-            SerectControll[0]++;
+            if (leftStickEnabled && rightStickEnabled)
+            {
+                leftStickEnabled = false;
+                rightStickEnabled = false;
+                SerectControll[0]++;
 
-            if (SerectControll[SerectComand] <= Serectpoints)
-                SerectControll[SerectComand] = Serectpoints - 1;
+                if (SerectControll[SerectComand] <= Serectpoints)
+                    SerectControll[SerectComand] = Serectpoints - 1;
 
-            GetImage(SerectControll[SerectComand]);       
+                GetImage(SerectControll[SerectComand]);
+            }    
         }
+
+        NeutralCheck();
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log(SerectControll[SerectComand]); 
             Debug.Log(SerectComand);
         }
-
     }
 
     void GetImage(int Serect)
@@ -182,5 +204,19 @@ public class StageSerectScript : MonoBehaviour
                 OpenOpsion();
             }
         }
+    }
+
+    void NeutralCheck()
+    {
+        if (leftStickValue < NeutralValue && leftStickValue > -NeutralValue)
+        {
+            leftStickEnabled = true;
+        }
+
+        if (rightStickValue < NeutralValue && rightStickValue > -NeutralValue)
+        {
+            rightStickEnabled = true;
+        }
+
     }
 }

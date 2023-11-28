@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 public class ResultScript : MonoBehaviour
 {
     [Header("âÊëúÇÇ‘ÇøçûÇﬁ")]
@@ -18,22 +19,34 @@ public class ResultScript : MonoBehaviour
 
     public int Stage_Number = ScoreManagerScript.Scene_Namber;
 
-    int n;
+    private int Number;
     [Header("ÉVÅ[Éìñº")]
     [SerializeField] string[] Scene_Name;
+
+    private float leftStickValue;
+    private float rightStickValue;
+    private bool leftStickEnabled;
+    private bool rightStickEnabled;
+
+    private float NeutralValue;
     // Start is called before the first frame update
     void Start()
     {
-        n = 0;
+        NeutralValue = 0.15f;
+        Number = 0;
         Chenge();
+        leftStickEnabled = true;
+        rightStickEnabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        leftStickValue = Gamepad.current.leftStick.ReadValue().y;
+        rightStickValue = Gamepad.current.rightStick.ReadValue().y;
+        if (Gamepad.current.aButton.wasPressedThisFrame) //Input.GetKeyDown(KeyCode.Space)
         {
-            switch (n)
+            switch (Number)
             {
                 case 0:
                     {
@@ -53,28 +66,53 @@ public class ResultScript : MonoBehaviour
                     break;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
 
-            n--;
-            if (n < 0)
-                n = 0;
-            Chenge();
+        else if (Gamepad.current.dpad.up.wasPressedThisFrame || leftStickValue > 0.6f ||rightStickValue > 0.6f) //Input.GetKeyDown(KeyCode.UpArrow)
+        {
+            if(leftStickEnabled && rightStickEnabled)
+            {
+                Number--;
+                if (Number < 0)
+                    Number = 0;
+                Chenge();
+                leftStickEnabled = false;
+                rightStickEnabled = false;
+            }
         }
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Gamepad.current.dpad.down.wasPressedThisFrame || leftStickValue < -0.6f || rightStickValue < -0.6f) //Input.GetKeyDown(KeyCode.DownArrow)
         {
-           
-            n++;
-            if (n > 2)
-                n = 2;
-            Chenge();
+            if (leftStickEnabled && rightStickEnabled)
+            {
+                Number++;
+                if (Number > 2)
+                    Number = 2;
+                Chenge();
+                leftStickEnabled = false;
+                rightStickEnabled = false;
+            }
         }
+
+        NeutralCheck();
+    }
+
+    void NeutralCheck()
+    {
+        if (leftStickValue < NeutralValue && leftStickValue > -NeutralValue)
+        {
+            leftStickEnabled = true;
+        }
+
+        if (rightStickValue < NeutralValue && rightStickValue > -NeutralValue)
+        {
+            rightStickEnabled = true;
+        }
+
     }
 
     void Chenge()
     {
-        switch (n)
+        switch (Number)
         {
             case 0:
                 {
@@ -99,5 +137,4 @@ public class ResultScript : MonoBehaviour
                 break;
         }
     }
-
 }
