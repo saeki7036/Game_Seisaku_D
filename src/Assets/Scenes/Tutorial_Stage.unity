@@ -26617,6 +26617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HidetextObject: {fileID: 1675190384}
   moveSpeed: 3
+  HideMode: 0
 --- !u!95 &2143162267
 Animator:
   serializedVersion: 5
