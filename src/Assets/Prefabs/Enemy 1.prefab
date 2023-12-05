@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0457bfdfa24e148b6ac49e11d9e463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8305601073388853577, guid: b1620ad2c8fa92a4187d033b343db147, type: 3}
   Speed: 1
   Waypoints:
   - {fileID: 0}
@@ -795,6 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visbilityEnter: 0
   escapetextObject: {fileID: 0}
+  player: {fileID: 8305601073388853577, guid: b1620ad2c8fa92a4187d033b343db147, type: 3}
   TimeOvercontroll: 0
   Interval: 3
 --- !u!1 &7022758428865523521
