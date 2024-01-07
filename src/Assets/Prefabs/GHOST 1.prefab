@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 1231894218519962425}
   - component: {fileID: 1231894218519962428}
   - component: {fileID: 1231894218519962371}
+  - component: {fileID: 71941300332549134}
   m_Layer: 0
   m_Name: GHOST 1
   m_TagString: Player
@@ -529,6 +530,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d9778e706d40c4f8aace0c606fcfdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &71941300332549134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151023603783021106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc65a9f71f1098439fbf5e28d0340c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Box: {fileID: 5276797997557822091, guid: afc450f9268ef914db432439c5c00a99, type: 3}
+  Max_Value: 2
+  Next_Box_Time: 15
 --- !u!1 &2431233971777043642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,9 +2073,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Surprise_Box: {fileID: 5276797997557822091, guid: afc450f9268ef914db432439c5c00a99, type: 3}
-  wallTag: Wall
   UIobj: {fileID: 0}
   roop: 0
+  Actionvc: {fileID: 0}
+  audioSource1: {fileID: 0}
 --- !u!1 &9204591918562097174
 GameObject:
   m_ObjectHideFlags: 0
