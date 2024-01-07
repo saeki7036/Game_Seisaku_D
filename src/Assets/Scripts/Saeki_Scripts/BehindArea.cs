@@ -75,6 +75,18 @@ public class BehindArea : MonoBehaviour
         }
     }
 
+    public void ResetEnter()
+    {
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = true;
+            behindEnter = false;
+        }
+    }
+
+
+
     void RotatePlayerTowardsParent()
     {
         if (playerObject != null && playerObject.CompareTag("Player"))
@@ -126,10 +138,10 @@ public class BehindArea : MonoBehaviour
             image.gameObject.SetActive(false);
         }
 
-        if(other.CompareTag("Box"))
-        {
-            behindEnter = true;
-        }
+        //if(other.CompareTag("Box"))
+        //{
+        //   behindEnter = true;
+        //}
     }
 
     void OnTriggerExit(Collider other)
