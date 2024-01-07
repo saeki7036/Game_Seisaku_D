@@ -3338,8 +3338,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4246206826033747056}
-  - {fileID: 4246206824885268760}
   - {fileID: 4246206826405080431}
+  - {fileID: 4246206824885268760}
   - {fileID: 8857429441387544526}
   - {fileID: 4920123806509412367}
   m_Father: {fileID: 0}
@@ -3691,7 +3691,7 @@ Transform:
   m_Children:
   - {fileID: 3294995030713815720}
   m_Father: {fileID: 4246206824670531387}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4246206824885268761
 BoxCollider:
@@ -6162,7 +6162,7 @@ Transform:
   - {fileID: 4246206824764995219}
   - {fileID: 4246206824896453041}
   m_Father: {fileID: 4246206824670531387}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4246206826422121698
 GameObject:

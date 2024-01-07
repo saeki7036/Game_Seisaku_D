@@ -84,7 +84,7 @@ public class EnemySearchScript : MonoBehaviour
     HideScript _Hide;
     private NavMeshAgent agent;
     private SkinnedMeshRenderer blendshape_SMR;
-
+    private bool RespawnCheck;
     private bool MadeItem;
     private int destPoint;
     private float Interval;
@@ -120,6 +120,7 @@ public class EnemySearchScript : MonoBehaviour
         blendshape_SMR = Moush.GetComponent<SkinnedMeshRenderer>();
 
         RandamBack = false;
+        RespawnCheck = true;
 
         if (SecretComandScript.Comand)
         {
@@ -243,8 +244,9 @@ public class EnemySearchScript : MonoBehaviour
 
         Interval += Time.deltaTime;
 
-        if (Interval > 2.99f)
+        if (Interval > 3f)
         {
+            _BehindTrigger.ResetEnter(); RespawnCheck = true;
             EscapeEffect.SetActive(false);
             EnemyMove = Move.Search;
         }
@@ -254,6 +256,7 @@ public class EnemySearchScript : MonoBehaviour
         if (BeforeMove != EnemyMove)
         {
             Interval = 0.0f;
+            RespawnCheck = true;
         }
 
         if (agent.speed != Speed)
@@ -407,9 +410,26 @@ public class EnemySearchScript : MonoBehaviour
             Interval = 0.0f;
 
             agent.speed = Speed / 3 * 2;
+            Vector3 Surp_pos = player.transform.position;
+            GameObject[] Box = GameObject.FindGameObjectsWithTag("SupBox");
+           
+            if (Box != null)
+            {
+                SupBoxvarious[] Script = new SupBoxvarious[Box.Length];
 
-            agent.destination = transform.position - (player.transform.position - transform.position) * 2;
-            Invoke("ActiveChange", 3.1f);
+                for (int i = 0; i < Box.Length; i++)
+                {
+                    Script[i] = Box[i].GetComponent<SupBoxvarious>();
+                    if (Script[i].SURP)
+                    {
+                        Surp_pos = Box[i].transform.position;
+                        break;
+                    }
+                }
+            }
+             
+            agent.destination = transform.position - (Surp_pos - transform.position) * 2;
+            Invoke("ActiveChange", 3f);
             EnemyMove = Move.None;
             EscapeEffect.SetActive(true);
         }
@@ -420,8 +440,12 @@ public class EnemySearchScript : MonoBehaviour
 
     void ActiveChange()
     {
-        EscapeEffect.SetActive(false);
-        this.gameObject.SetActive(false);
+        if (RespawnCheck)
+        {
+            RespawnCheck = false;
+            EscapeEffect.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
     }
 
     void CreateItem()

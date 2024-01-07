@@ -236,8 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9132d4964cd708942a825e534fa64ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animStart: 3
-  destroyDelay: 10
+  destroyDelay: 7
+  Surp_Interbal: 7
+  Surp_distanse: 7
+  SURP: 0
 --- !u!135 &6925557857177830245
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -249,8 +251,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5704664878995514597
 GameObject:
   m_ObjectHideFlags: 0
