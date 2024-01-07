@@ -5,34 +5,78 @@ using UnityEngine;
 public class SupBoxvarious : MonoBehaviour
 {
     private Animator animator;
-    public float animStart;
-    public float destroyDelay = 10f;
-
-
+    public float destroyDelay = 7f;
+    public float Surp_Interbal = 7f;
+    public float Surp_distanse = 7f;
+    private float Time_Count;
+    public bool SURP;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        Invoke("ActivateSurpTrigger", animStart);
+        Time_Count = 0f;
+        SURP = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!SURP) 
+        {
+            Time_Count += Time.deltaTime;
 
+            EnemyDistanseCheck();
+
+            if (Time_Count > Surp_Interbal)
+                ActivateSurpTrigger();
+        }
     }
-
+   
     void ActivateSurpTrigger()
     {
-        if (animator != null)
+        if (animator != null && !SURP)
         {
+            SURP = true;
             animator.SetTrigger("Surp");
-            Invoke("DestroyGameObject", destroyDelay);
+            DestroyGameObject();
+            Enemy_Surp();
+        }
+    }
+    
+    void Enemy_Surp()
+    {
+        GameObject[] Enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] Behinds = GameObject.FindGameObjectsWithTag("Behind");
+        BehindArea[] Script = new BehindArea[Behinds.Length];
+
+        for (int i = 0; i < Behinds.Length; i++)
+        {
+         
+            if (Surp_distanse > Vector3.Distance(Enemys[i].transform.position, this.transform.position))
+            {
+                Script[i] = Behinds[i].GetComponent<BehindArea>();
+                if (!Script[i].behindEnter)
+                    Script[i].behindEnter = true;
+            }
+               
+        }
+    }
+
+    void EnemyDistanseCheck()
+    {
+        GameObject[] Enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < Enemys.Length; i++)
+        {
+            if(Surp_distanse > Vector3.Distance(Enemys[i].transform.position, this.transform.position))
+            {
+                ActivateSurpTrigger(); Debug.Log("www");
+                break;
+            }
         }
     }
 
     void DestroyGameObject()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, destroyDelay);
     }
 }
