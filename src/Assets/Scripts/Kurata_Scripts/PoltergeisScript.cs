@@ -48,7 +48,7 @@ public class PoltergeisScript : MonoBehaviour
             // プレイヤーがエリア内にいる場合の処理
             if (Gamepad.current.buttonSouth.wasReleasedThisFrame)// || Input.GetKeyDown(KeyCode.Z)
             {
-
+                
                 if (parentAnimator != null)
                 {
                     parentAnimator.SetBool("isFall", true);
@@ -67,8 +67,7 @@ public class PoltergeisScript : MonoBehaviour
 
                 if (childTransform != null)
                 {
-                    Vector3 targetPosition = new Vector3(childTransform.position.x, transform.position.y, childTransform.position.z);
-                    transform.LookAt(targetPosition);
+                    transform.LookAt(childTransform);
                 }
 
                 glass_break = true;
@@ -76,7 +75,7 @@ public class PoltergeisScript : MonoBehaviour
                 isPlayerInside = false;
                 m_Animator.SetBool("Pol", true);
             }
-
+           
         }
 
         // glass_breakがtrueの場合、一定時間後にリセット
@@ -90,7 +89,7 @@ public class PoltergeisScript : MonoBehaviour
                 glassBreakTimer = 0f; // タイマーをリセット
                 m_Animator.SetBool("Pol", false);
             }
-
+            
         }
     }
 
@@ -111,7 +110,7 @@ public class PoltergeisScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Pol")
         {
-
+            
             // 接触したオブジェクトの親オブジェクトを取得
             parentTransform = col.transform.parent;
 
@@ -121,9 +120,9 @@ public class PoltergeisScript : MonoBehaviour
             Transform FallCpllider = parentTransform.GetChild(4);
             Debug.Log(FallCpllider);
             sphereCollider = FallCpllider.GetComponent<SphereCollider>();
-
+            
             // 1個下の子オブジェクトのTransformを取得
-            childTransform = parentTransform.transform.GetChild(6);
+            childTransform = parentTransform.transform.GetChild(0);
             Debug.Log(childTransform);
 
         }
