@@ -46,17 +46,20 @@ public class SupBoxvarious : MonoBehaviour
     void Enemy_Surp()
     {
         GameObject[] Enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] Behinds = GameObject.FindGameObjectsWithTag("Behind");
-        BehindArea[] Script = new BehindArea[Behinds.Length];
-
-        for (int i = 0; i < Behinds.Length; i++)
+        //GameObject[] Behinds = GameObject.FindGameObjectsWithTag("Behind");
+        //BehindArea[] Script = new BehindArea[Enemys.Length];
+        
+        for (int i = 0; i < Enemys.Length; i++)
         {
-         
+            //Debug.Log(Enemys[i].name);
+            //Debug.Log(Vector3.Distance(Enemys[i].transform.position, this.transform.position));
+            
             if (Surp_distanse > Vector3.Distance(Enemys[i].transform.position, this.transform.position))
             {
-                Script[i] = Behinds[i].GetComponent<BehindArea>();
-                if (!Script[i].behindEnter)
-                    Script[i].behindEnter = true;
+                GameObject Behind = Enemys[i].transform.Find("Collisions/Enemy/Behind").gameObject;
+                BehindArea Script = Behind.GetComponent<BehindArea>();
+                if (!Script.behindEnter)
+                    Script.behindEnter = true;
             }
                
         }

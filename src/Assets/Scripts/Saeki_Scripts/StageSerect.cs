@@ -24,9 +24,14 @@ public class StageSerect : MonoBehaviour
     AudioSource audioSource;
 
     private int SerectComand;
+
+    [SerializeField] private GameObject PVImage;
+    public static bool PVPlay = true;
+    private bool InputCheck;
     // Start is called before the first frame update
     void Start()
     {
+        InputCheck = true;
         ComandChack = false;
         NeutralValue = 0.15f;
         SerectComand = 0;
@@ -44,69 +49,72 @@ public class StageSerect : MonoBehaviour
                 anim[i].SetBool("Select", false);
         }
         audioSource = GetComponent<AudioSource>();
-
+        PVImage.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        leftStickValue = Gamepad.current.leftStick.ReadValue().x;
-        rightStickValue = Gamepad.current.rightStick.ReadValue().x;
-
-        if (Gamepad.current.aButton.wasPressedThisFrame)
+        if (InputCheck)
         {
-            Invoke("GetSerect",0.1f);
-            
-            GetSE();
-        }
+            leftStickValue = Gamepad.current.leftStick.ReadValue().x;
+            rightStickValue = Gamepad.current.rightStick.ReadValue().x;
 
-        else if (Gamepad.current.dpad.left.wasPressedThisFrame || leftStickValue < -0.6f || rightStickValue < -0.6f) //Input.GetKeyDown(KeyCode.UpArrow)
-        {
-            if (leftStickEnabled && rightStickEnabled)
+            if (Gamepad.current.aButton.wasPressedThisFrame)
             {
-                leftStickEnabled = false;
-                rightStickEnabled = false;
-                SerectComand--;
+                Invoke("GetSerect", 0.1f);
 
-                if (SerectComand < 0)
-                    SerectComand = 0;
-
-                else
-                {
-                    GetSE();
-                    for(int i = 0; i < Stage_Image.Length; i++)
-                    {
-                        if(i == SerectComand)
-                            anim[i].SetBool("Select", true);
-
-                        else
-                            anim[i].SetBool("Select", false);
-                    }    
-                }   
+                GetSE();
             }
-        }
 
-        else if (Gamepad.current.dpad.right.wasPressedThisFrame || leftStickValue > 0.6f || rightStickValue > 0.6f) //Input.GetKeyDown(KeyCode.DownArrow)
-        {
-            if (leftStickEnabled && rightStickEnabled)
+            else if (Gamepad.current.dpad.left.wasPressedThisFrame || leftStickValue < -0.6f || rightStickValue < -0.6f) //Input.GetKeyDown(KeyCode.UpArrow)
             {
-                leftStickEnabled = false;
-                rightStickEnabled = false;
-                SerectComand++;
-
-                if (SerectComand >= Stage_Image.Length)
-                    SerectComand = Stage_Image.Length - 1;
-
-                else
+                if (leftStickEnabled && rightStickEnabled)
                 {
-                    GetSE();
-                    for (int i = 0; i < Stage_Image.Length; i++)
-                    {
-                        if (i == SerectComand)
-                            anim[i].SetBool("Select", true);
+                    leftStickEnabled = false;
+                    rightStickEnabled = false;
+                    SerectComand--;
 
-                        else
-                            anim[i].SetBool("Select", false);
+                    if (SerectComand < 0)
+                        SerectComand = 0;
+
+                    else
+                    {
+                        GetSE();
+                        for (int i = 0; i < Stage_Image.Length; i++)
+                        {
+                            if (i == SerectComand)
+                                anim[i].SetBool("Select", true);
+
+                            else
+                                anim[i].SetBool("Select", false);
+                        }
+                    }
+                }
+            }
+
+            else if (Gamepad.current.dpad.right.wasPressedThisFrame || leftStickValue > 0.6f || rightStickValue > 0.6f) //Input.GetKeyDown(KeyCode.DownArrow)
+            {
+                if (leftStickEnabled && rightStickEnabled)
+                {
+                    leftStickEnabled = false;
+                    rightStickEnabled = false;
+                    SerectComand++;
+
+                    if (SerectComand >= Stage_Image.Length)
+                        SerectComand = Stage_Image.Length - 1;
+
+                    else
+                    {
+                        GetSE();
+                        for (int i = 0; i < Stage_Image.Length; i++)
+                        {
+                            if (i == SerectComand)
+                                anim[i].SetBool("Select", true);
+
+                            else
+                                anim[i].SetBool("Select", false);
+                        }
                     }
                 }
             }
@@ -114,7 +122,7 @@ public class StageSerect : MonoBehaviour
 
         NeutralCheck();
     }
-    void GetSerect()
+    public void GetSerect()
     {
         if(SecretComandScript.Comand != ComandChack)
         {
@@ -124,12 +132,27 @@ public class StageSerect : MonoBehaviour
 
         else if (SerectComand == 0)
         {
-            SceneManager.LoadSceneAsync("Tutorial_Stage");
+            if (PVPlay)
+            {
+                SetPVImage();
+                PVPlay = false;
+                InputCheck = false;
+            }
+            else
+                SceneManager.LoadSceneAsync("Tutorial_Stage");
+
         }
 
         else if (SerectComand == 1)
         {
-            SceneManager.LoadSceneAsync("Second_Stage");
+            if (PVPlay)
+            {
+                SetPVImage();
+                PVPlay = false;
+                InputCheck = false;
+            }
+            else
+                SceneManager.LoadSceneAsync("Second_Stage");
         }
 
         else if (SerectComand == 2)
@@ -138,6 +161,14 @@ public class StageSerect : MonoBehaviour
         }
 
     }
+    void SetPVImage()
+    {
+        PVImage.SetActive(true);
+        VideoPlayerScript script = PVImage.GetComponent<VideoPlayerScript>();
+        script.PlayVideo();
+    }
+
+
     void GetSE()
     {
         audioSource.Stop();

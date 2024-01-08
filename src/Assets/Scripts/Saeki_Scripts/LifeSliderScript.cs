@@ -72,7 +72,7 @@ public class LifeSliderScript : MonoBehaviour
             }
             else
                 slider.value = Mathf.Lerp(slider.value, targetValue, Time.deltaTime * decreaseSpeed);
-            Debug.Log(slider.value);
+            //Debug.Log(slider.value);
             if (_life.currentHealth > 0)
             {
                 if (slider.value < 1)

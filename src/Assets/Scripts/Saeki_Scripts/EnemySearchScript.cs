@@ -225,7 +225,7 @@ public class EnemySearchScript : MonoBehaviour
             SearchCommand();
         }
 
-        Debug.Log(EnemyMove, gameObject);
+        //Debug.Log(EnemyMove, gameObject);
 
         BeforeMove = EnemyMove;
     }
