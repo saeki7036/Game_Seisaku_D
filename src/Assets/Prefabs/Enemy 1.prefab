@@ -151,6 +151,7 @@ MonoBehaviour:
   behindEnter: 0
   sound1: {fileID: 8300000, guid: b5465ab0b1d795c4aa963497a9ab1080, type: 3}
   sound2: {fileID: 8300000, guid: 76a5e6d82936f1846bfcaa16585f9792, type: 3}
+  sound3: {fileID: 0}
   ButtonPushImage: {fileID: 0}
 --- !u!227 &3248019688556797396
 BillboardRenderer:
@@ -607,7 +608,7 @@ GameObject:
   - component: {fileID: 1994402408976450657}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
