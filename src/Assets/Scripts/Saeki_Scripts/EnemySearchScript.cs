@@ -45,7 +45,7 @@ public class EnemySearchScript : MonoBehaviour
 
     [Space]
     [Header("所持アイテム")]
-    [SerializeField] private GameObject DropItem;
+    [SerializeField] public GameObject DropItem;
 
     [Space]
     [Header("振りむく確率(n * 10 %)"),Range(0,10)]

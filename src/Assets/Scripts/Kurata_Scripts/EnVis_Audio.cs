@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnVis_Audio : MonoBehaviour
 {
 
-    public AudioClip chase, sound2;
-    AudioSource audioSource;
+    public AudioClip chase;//, sound2;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
